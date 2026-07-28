@@ -1,0 +1,353 @@
+:root {
+  --paper: #f1f0ea;
+  --paper-raised: #fbfaf6;
+  --ink: #1f2421;
+  --ink-soft: #5b625c;
+  --rule: #d8d5c9;
+  --margin: #8a6b4f;
+  --accent: #35605b;
+  --accent-soft: #e3ebe9;
+  --overdue: #a8631b;
+  --overdue-soft: #f5e6d5;
+  --complete: #4f7358;
+  --complete-soft: #e6ede4;
+  --progress: #4a5a8a;
+  --progress-soft: #e5e8f2;
+
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+.masthead {
+  margin-bottom: 40px;
+}
+
+.masthead h1 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+
+.masthead p {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* --- form --- */
+
+.task-form {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.task-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.task-form__row--split {
+  grid-template-columns: 1fr 1fr;
+}
+
+.task-form label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+
+.task-form input,
+.task-form textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.task-form textarea {
+  resize: vertical;
+  min-height: 56px;
+}
+
+.task-form input:focus,
+.task-form textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.task-form__submit {
+  margin-top: 14px;
+  background: var(--accent);
+  color: var(--paper-raised);
+  border: none;
+  border-radius: 3px;
+  padding: 9px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.task-form__submit:hover {
+  filter: brightness(1.08);
+}
+
+.task-form__error {
+  color: var(--overdue);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+/* --- sort tabs --- */
+
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sort-bar span.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-right: 8px;
+}
+
+.sort-tab {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.sort-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+.archived-toggle {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* --- ledger list --- */
+
+.ledger {
+  border-left: 3px solid var(--margin);
+  padding-left: 20px;
+}
+
+.ledger__empty {
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 24px 0;
+}
+
+.task-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.task-row.archived {
+  opacity: 0.55;
+}
+
+.task-row__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-row__title-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.task-row__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.task-row.archived .task-row__title {
+  text-decoration: line-through;
+}
+
+.task-row__topic {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  background: var(--rule);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.task-row__desc {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-top: 4px;
+  max-width: 60ch;
+}
+
+.task-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+.status-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-pill.todo {
+  background: var(--rule);
+  color: var(--ink-soft);
+}
+.status-pill.todo::before { background: var(--ink-soft); }
+
+.status-pill.in_progress {
+  background: var(--progress-soft);
+  color: var(--progress);
+}
+.status-pill.in_progress::before { background: var(--progress); }
+
+.status-pill.complete {
+  background: var(--complete-soft);
+  color: var(--complete);
+}
+.status-pill.complete::before { background: var(--complete); }
+
+.due-date {
+  color: var(--ink-soft);
+}
+
+.overdue-flag {
+  color: var(--overdue);
+  background: var(--overdue-soft);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+.task-row__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.task-row__actions select,
+.task-row__actions button {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.task-row__actions button.archive {
+  color: var(--margin);
+  border-color: var(--margin);
+  background: none;
+}
+
+.task-row__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.task-row__edit-form input,
+.task-row__edit-form textarea {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
