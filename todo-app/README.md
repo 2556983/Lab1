@@ -6,7 +6,10 @@ A local-first todo application built with Next.js and SQLite. There are no user 
 
 Requires **Node.js v20+**.
 
+Run these from the `todo-app` directory (where this README lives):
+
 ```bash
+cd todo-app
 npm install
 npm run build
 npm run start
